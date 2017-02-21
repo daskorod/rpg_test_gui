@@ -1,50 +1,25 @@
 
 import pygame
-import random
+#import random
 import sys
-import pyganim
-from constants import *
-from classes import Platform
-from classes import Monster
-from functions import event_go
-from screens import *
+#import pyganim
+#from constants import *
+#from classes import Platform
+#from classes import Monster
+#from functions import event_go
+#from screens import *
 from level1 import Level1
+from level2 import Level2
 
+class Control ():
+	def __init__ (self):
 
-stage1 = Level1()
-
-
-
-class Main ():
-	def __init__ (self, stage1):
-
-		self.x = 0
-		self.y = 0
-		self.stage1 = stage1
-		self.done = True
-		self.stage1 = True
-		self.stage2 = False
-		self.stage3 = False
 		self.k_space = False
-		#self.a = timer.get_fps()
+		self.stage1_flag = True
+		self.stage2_flag = False
+		self.flag = 0
 
-	def stage_loop (self):
-
-		self.render_main ()
-
-	#	if self.stage1 == True:
-		#	self.stage1_loop ()
-
-		#if self.stage2 == True:
-		#	self.stage2_loop ()
-
-	#	if self.stage3 == True:
-		#	self.stage3_loop()
-
-	def control_loop (self):
-
-		while self.done:
-
+	def control (self):
 			for e in pygame.event.get ():
 
 				if e.type == pygame.QUIT:
@@ -60,15 +35,39 @@ class Main ():
 					if e.key == pygame.K_SPACE:
 						self.k_space = False
 
-			
-			stage1.stage_loop ()
+class Main ():
+	def __init__ (self, stage1, stage2, control):
+		self.stage1 = stage1
+		self.stage2 = stage2
+		self.control = control
 
+	def main_loop (self):
+
+		while True:
+			
+			self.control.control ()
+
+			if self.control.stage1_flag == True:
+				if self.control.flag == 1:
+					self.control.k_space = False
+					self.control.flag = 0
+				self.stage1.stage_loop ()
+
+			if self.control.stage2_flag == True:
+				if self.control.flag == 0:
+					self.control.k_space = False
+					self.control.flag = 1
+				self.stage2.stage_loop ()
+	
 			pygame.display.flip()
-			
 
+		
+control = Control ()
+stage1 = Level1(control)
+stage2 = Level2(control)
+game = Main (stage1, stage2,control)
 
-game = Main (stage1)
-game.control_loop ()
+game.main_loop ()
 
 
 

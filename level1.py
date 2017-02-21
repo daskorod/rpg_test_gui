@@ -13,6 +13,7 @@ font1= pygame.font.Font ("fonts/fonta.ttf", 24)
 rect1 = pygame.Surface ((20,20))
 
 timer = pygame.time.Clock  ()
+
 lev = [
 	       "",
 	       "",
@@ -26,10 +27,11 @@ lev = [
 	       "--------------------------"]
 
 class Level1 ():
-	def __init__ (self):
-		
+
+	def __init__ (self, control):
+
 	    self.platforms, self.block_group = create_level (lev)
-	    
+	    self.control = control
 
 	def render_stage1 (self):
 
@@ -52,9 +54,11 @@ class Level1 ():
 
 	def stage_loop (self):
 
+
 		self.a = timer.get_fps()
 		self.render_stage1 ()
 		timer.tick (30)
-	#	if game.k_space == True:
-	#		game.stage1 = False
-	#		game.stage2 = True
+
+		if self.control.k_space == True:
+			self.control.stage1_flag = False
+			self.control.stage2_flag = True
