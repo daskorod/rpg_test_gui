@@ -1,10 +1,7 @@
 import pygame
 import sys
 
-
-
-
-class Control ():
+class Holy_Spirit ():
 	def __init__ (self):
 
 		self.k_space = False
@@ -16,7 +13,6 @@ class Control ():
 		self.up = False
 		self.down = False
 		
-
 	def control (self):
 			for e in pygame.event.get ():
 

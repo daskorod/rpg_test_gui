@@ -5,21 +5,17 @@ from level1 import Level1
 from level2 import Level2
 import classes
 import controller
+import character
 
-
-
-
-class Main ():
+class Father ():
 	def __init__ (self, stage1, stage2, control):
 		self.stage1 = stage1
 		self.stage2 = stage2
 		self.control = control
-
-
+		
 	def main_loop (self):
-
 		while True:
-			
+
 			self.control.control ()
 
 			if self.control.stage1_flag == True:
@@ -37,15 +33,11 @@ class Main ():
 			pygame.display.update()
 
 
-		
-control = controller.Control () 
-
-hero = classes.Hero (20,20, control)
-
+control = controller.Holy_Spirit () 
+hero = character.Hero (0,0, control)
 stage1 = Level1(control, hero)
-stage2 = Level2(control)
-
-game = Main (stage1, stage2, control)
+stage2 = Level2(control, hero)
+game = Father (stage1, stage2, control)
 game.main_loop ()
 
 
