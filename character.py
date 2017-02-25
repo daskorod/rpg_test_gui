@@ -7,7 +7,7 @@ svin_anim.play ()
 
 
 class Hero(pygame.sprite.Sprite):
-	"""docstring for Sprite"""
+
 	def __init__(self, x, y, control):
 		pygame.sprite.Sprite.__init__(self)
 

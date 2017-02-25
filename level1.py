@@ -62,7 +62,7 @@ class Level1 ():
 
 		self.hero.render (adventure_screen)
 		self.hero.update (self.platforms)
-		self.hero.taking (self.chests)
+		self.hero.taking (self.block_group)
 
 
 		timer.tick (60)
