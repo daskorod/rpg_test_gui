@@ -7,6 +7,8 @@ import classes
 import controller
 import character
 
+
+
 class Father ():
 	def __init__ (self, stage1, stage2, control):
 		self.stage1 = stage1

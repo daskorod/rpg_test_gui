@@ -9,7 +9,7 @@ def event_go ():
 def create_level (level):
 	sprite_group = sprite.Group ()
 	platforms = []
-	chests = []
+	#chests = []
 	x = 0
 	y = 0
 	for row in level:
@@ -20,11 +20,14 @@ def create_level (level):
 				sprite_group.add (pf)
 			if col == "c":
 				ch = classes.Chest (x,y)
-				chests.append (ch)
+				#chests.append (ch)
 				sprite_group.add (ch)
+			if col == "m":
+				mn = classes.Monster (x,y)
+				sprite_group.add (mn)
 			x += 45
 		x = 0
 		y += 45
 	x = 0
 	y = 0
-	return  platforms, sprite_group, chests
+	return  platforms, sprite_group

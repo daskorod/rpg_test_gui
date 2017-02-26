@@ -4,31 +4,30 @@ import classes
 from functions import create_level
 from screens import *
 from constants import *
+import fonts
 
-pygame.font.init ()
-font1= pygame.font.Font ("fonts/fonta.ttf", 24)
-rect1 = pygame.Surface ((20,20))
+
 timer = pygame.time.Clock  ()
 pygame.key.set_repeat(100,100)
 pygame.key.get_repeat ()
 
 lev = [
 	       "",
-	       "",
-	       "",
-	       "",
-	       "",
-	       "      c   ---     ",
-	       " ---0-  -----          ----  ",
+	       "ccccccc",
+	       "cccccccсссcссс",
+	       "  сcccccc ccc c ",
+	       "cccc m",
+	       "    c  c cc  --- с    ",
+	       " ---0-  -----  m        ----  ",
 	       "   -----  c   ----     ---- ",
-	       "    c         ----  ",
+	       " m   cc 	с ccc    ----  ",
 	       "--------------------------"]
 
 
 class Level1 ():
 
 	def __init__ (self, control, hero):
-		self.platforms, self.block_group, self.chests = create_level (lev)
+		self.platforms, self.block_group = create_level (lev)
 		self.control = control
 		self.hero = hero
 		#self.hero.block_group = self.block_group
@@ -44,12 +43,12 @@ class Level1 ():
 		hero_screen.fill ((cool_orange))
 
 		instrumental_screen.blit (information_screen, (150,0))
-		information_screen.fill ((50,50,50))
+		#information_screen.fill ((50,50,50))
 		instrumental_screen.blit (monster_screen, (650,0))
 		monster_screen.fill ((sea_color))
 
 		self.block_group.draw (adventure_screen)
-		start_screen.blit(font1.render (str(self.a), True, (250,250,250)),(0,0))
+		start_screen.blit(fonts.font1.render (str(self.a), True, (250,250,250)),(0,0))
 		
 
 
@@ -61,8 +60,8 @@ class Level1 ():
 		self.render_stage1 ()
 
 		self.hero.render (adventure_screen)
-		self.hero.update (self.platforms)
-		self.hero.taking (self.block_group)
+		self.hero.update (self.block_group)
+		#self.hero.taking (self.block_group)
 
 
 		timer.tick (60)

@@ -20,10 +20,10 @@ lev = [
        "",
        "",
        "",
-       "              ",
+       " ccc             ",
        "  ---           ----  ",
-       "   -----          ---- ",
-       "      ----       ----  ",
+       "  ccc -----          ---- ",
+       " m  ccc   ----       ----  ",
        "--------------------------"]
 
 
@@ -31,7 +31,7 @@ class Level2 ():
 
 	def __init__ (self, control,hero):
 
-	    self.platforms, self.block_group, self.chests = create_level (lev)
+	    self.platforms, self.block_group = create_level (lev)
 	    self.control = control
 	    self.hero = hero
 	    #self.hero.block_group = self.block_group
@@ -63,7 +63,7 @@ class Level2 ():
 		svin_anim.blit (adventure_screen, (10,10))
 
 		self.hero.render (adventure_screen)
-		self.hero.update (self.platforms)	
+		self.hero.update (self.block_group)	
 
 
 

@@ -28,61 +28,90 @@ class Hero(pygame.sprite.Sprite):
 
 		for entity in array:
 			if pygame.sprite.collide_rect (self, entity):
-				self.collision = True
 				return entity
 
-	def taking (self, array):
+	#def taking (self, array):
 
-		self.item = self.collide (array)
-		if self.collision == True:
-			self.collision = False
-			array.remove (self.item)
+		#self.item = self.collide (array)
+		#if self.collision == True:
+			#self.collision = False
+			#array.remove (self.item)
 
-	def update (self, blocks):
+	def update (self, array):
 
 		if self.control.right == True:
 			self.control.right = False
+
 			self.rect.x += 1
-			self.collide (blocks)
-			if self.collision == False:
+
+			self.etwas = self.collide(array)
+
+			try:
+				if self.etwas.name == "block" or self.etwas.name == "monster":
+					self.rect.x -= 1
+					self.etwas.interaction ()
+				if self.etwas.name == "chest":
+					self.rect.x -= 1
+					self.rect.x += 45
+					array.remove (self.etwas)
+				#if self.etwas.name == "monster":
+					#self.rect.x -= 1
+					#self.etwas.interaction ()
+			except:
 				self.rect.x += 45
 				self.rect.x -= 1
-			if self.collision == True:
-				self.rect.x -= 1
-			self.collision = False
+			
 
 		if self.control.left == True:
 			self.control.left = False
 			self.rect.x -= 1
-			self.collide (blocks)
-			if self.collision == False:
+
+			self.etwas = self.collide(array)
+			try:
+				if self.etwas.name == "block" or self.etwas.name == "monster":
+					self.rect.x += 1
+					self.etwas.interaction ()
+				if self.etwas.name == "chest":
+					self.rect.x += 1
+					self.rect.x -= 45
+					array.remove (self.etwas)
+			except:
 				self.rect.x -= 45
 				self.rect.x += 1
-			if self.collision == True:
-				self.rect.x += 1
-			self.collision = False
 
 		if self.control.up == True:
 			self.control.up = False
 			self.rect.y -= 1
-			self.collide (blocks)
-			if self.collision == False:
+
+			self.etwas = self.collide(array)
+			try:
+				if self.etwas.name == "block" or self.etwas.name == "monster":
+					self.rect.y += 1
+					self.etwas.interaction ()
+				if self.etwas.name == "chest":
+					self.rect.y += 1
+					self.rect.y -= 45
+					array.remove (self.etwas)
+			except:
 				self.rect.y -= 45
 				self.rect.y += 1
-			if self.collision == True:
-				self.rect.y += 1
-			self.collision = False	
 
 		if self.control.down == True:
 			self.control.down = False
 			self.rect.y += 1
-			self.collide (blocks)
-			if self.collision == False:
+
+			self.etwas = self.collide(array)
+			try:
+				if self.etwas.name == "block" or self.etwas.name == "monster":
+					self.rect.y -= 1
+					self.etwas.interaction ()
+				if self.etwas.name == "chest":
+					self.rect.y -= 1
+					self.rect.y += 45
+					array.remove (self.etwas)
+			except:
 				self.rect.y += 45
 				self.rect.y -= 1
-			if self.collision == True:
-				self.rect.y -= 1
-			self.collision = False
 
 		if self.rect.x > 810:
 			self.rect.x = 0
