@@ -53,7 +53,7 @@ class Level ():
 		#self.hero.render (adventure_screen)
 		
 		self.hero.update (self.block_group)
-		functions.render_text (text.text1)
+		#functions.render_text (text.text1)
 		self.camera.update(self.hero)
 		timer.tick (60)
 

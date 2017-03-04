@@ -6,6 +6,7 @@ svin_anim = pyganim.PygAnimation(svin_anim_list)
 svin_anim.play ()
 
 
+
 class Hero(pygame.sprite.Sprite):
 
 	def __init__(self, x, y, control):
@@ -23,12 +24,15 @@ class Hero(pygame.sprite.Sprite):
 		self.collision = False
 		self.block_group = []
 		self.item = []
+		self.collide_control = False
+		#self.etwas = nothing
 
 	def collide (self, array):
 
 		for entity in array:
 			if pygame.sprite.collide_rect (self, entity):
 				return entity
+
 
 	#def taking (self, array):
 
@@ -38,16 +42,22 @@ class Hero(pygame.sprite.Sprite):
 			#array.remove (self.item)
 
 	def update (self, array):
+		if self.collide_control == True:
+			self.etwas.interaction()
 
+
+		#RIGHT
 		if self.control.right == True:
+			self.collide_control = False
 			self.control.right = False
 
 			self.rect.x += 1
 
 			self.etwas = self.collide(array)
 
-			try:
-				if self.etwas.name == "block" or self.etwas.name == "monster":
+			if self.etwas != None:
+
+				if self.etwas.name == "block":
 					self.rect.x -= 1
 					self.etwas.interaction ()
 				if self.etwas.name == "chest":
@@ -56,63 +66,86 @@ class Hero(pygame.sprite.Sprite):
 					array.remove (self.etwas)
 				if self.etwas.name == "monster":
 					self.rect.x -= 1
+					self.collide_control = True
 					self.etwas.interaction ()
-			except:
+
+			if self.etwas == None: 
 				self.rect.x += 45
 				self.rect.x -= 1
 			
-
+		#LEFT
 		if self.control.left == True:
 			self.control.left = False
+			self.collide_control = False
 			self.rect.x -= 1
 
 			self.etwas = self.collide(array)
-			try:
+			if self.etwas != None:
 				if self.etwas.name == "block" or self.etwas.name == "monster":
 					self.rect.x += 1
+					self.collide_control = True
 					self.etwas.interaction ()
 				if self.etwas.name == "chest":
 					self.rect.x += 1
 					self.rect.x -= 45
 					array.remove (self.etwas)
-			except:
+				if self.etwas.name == "nothing":
+					self.rect.x -= 45
+					self.rect.x += 1
+			if self.etwas == None: 
 				self.rect.x -= 45
 				self.rect.x += 1
 
+
+
+		#UP
 		if self.control.up == True:
 			self.control.up = False
+			self.collide_control = False
 			self.rect.y -= 1
 
 			self.etwas = self.collide(array)
-			try:
+
+			if self.etwas != None:
+
 				if self.etwas.name == "block" or self.etwas.name == "monster":
 					self.rect.y += 1
+					self.collide_control = True
 					self.etwas.interaction ()
 				if self.etwas.name == "chest":
 					self.rect.y += 1
 					self.rect.y -= 45
 					array.remove (self.etwas)
-			except:
-				self.rect.y -= 45
-				self.rect.y += 1
+				if self.etwas.name == "nothing":
+					self.rect.y -= 45
+					self.rect.y += 1
 
+			if self.etwas == None: 
+				self.rect.y +=1
+				self.rect.y -=45
+
+
+		#DOWN
 		if self.control.down == True:
 			self.control.down = False
+			self.collide_control = False
 			self.rect.y += 1
 
 			self.etwas = self.collide(array)
-			try:
+			if self.etwas != None:
 				if self.etwas.name == "block" or self.etwas.name == "monster":
 					self.rect.y -= 1
+					self.collide_control = True
 					self.etwas.interaction ()
 				if self.etwas.name == "chest":
 					self.rect.y -= 1
 					self.rect.y += 45
 					array.remove (self.etwas)
-			except:
+			if self.etwas == None: 
 				self.rect.y += 45
 				self.rect.y -= 1
 
+		#self.etwas.interaction ()
 		#if self.rect.x > 810:
 		#	self.rect.x = 0
 		#if self.rect.y > 450:

@@ -15,7 +15,7 @@ import text
 		#adventure_screen.blit(background, (0, 0))
 		#svin_anim.blit (adventure_screen, (200,300))
 class Monster(sprite.Sprite):
-	def __init__(self, x, y):
+	def __init__(self, x, y, text):
 		sprite.Sprite.__init__(self)
 		#self.image=image.load(filename)
 		#self.image.set_colorkey ((255,255,255))
@@ -26,10 +26,11 @@ class Monster(sprite.Sprite):
 		self.rect.x = x
 		self.rect.y = y
 		self.name = "monster"
+		self.text = text
 
 	def interaction (self):
 		#screens.information_screen.blit(fonts.font1.render ((self.a), True, (250,250,250)),(0,0))
-		functions.render_text (tex.text1)
+		functions.render_text (self.text)
 
 class Platform(sprite.Sprite):
 	def __init__(self, x, y):

@@ -3,6 +3,7 @@ from pygame import sprite
 import fonts
 from screens import *
 from constants import *
+import text
 
 def event_go ():
 	c = 0
@@ -25,7 +26,7 @@ def create_level (level):
 				#chests.append (ch)
 				sprite_group.add (ch)
 			if col == "m":
-				mn = classes.Monster (x,y)
+				mn = classes.Monster (x,y,text.zombitext)
 				sprite_group.add (mn)
 			x += 45
 		x = 0
@@ -38,6 +39,8 @@ def create_level (level):
 
 
 def render_text (text):
+	#x = 50
+	#for text in text[0,x] x+=50
 	s1 = text[0:50]
 	s2 = text[50:100]
 	s3 = text[100:150]
@@ -62,3 +65,4 @@ def text_split (text):
 	s2 = text[50:100]
 	s3 = text[100:150]
 	return s1, s2, s3
+
