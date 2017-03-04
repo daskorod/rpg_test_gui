@@ -7,6 +7,8 @@ black = (0,0,0)
 red = (208,17,17)
 swamp = ((113,111,23))
 blue = ((30, 30, 180))
+PF_HEIGHT = 45
+PF_WIDTH = 45
 
 color_emerging = ((xx,xx,xx))
 event1 = True

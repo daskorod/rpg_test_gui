@@ -1,15 +1,31 @@
 
 import pygame
-import sys
-from level1 import Level1
-from level2 import Level2
+import level1
+import level2
 import classes
 import controller
 import character
+from level_data import *
+from constants import *
+import camera
+
+level_width = len(lev1[0])*PF_WIDTH
+level_height = len(lev1)*PF_HEIGHT
+
+def camera_config (camera, target_rect):
+		l = -target_rect.x + 810/2
+		t = -target_rect.y + 420/2
+		w,h = camera.width, camera.height
+
+		l = min(0, l)                           # Не движемся дальше левой границы
+		l = max(-(camera.width-810), l)   # Не движемся дальше правой границы
+		t = max(-(camera.height-420), t) # Не движемся дальше нижней границы
+		t = min(0, t)                           # Не движемся дальше верхней границы
 
 
+		return pygame.Rect (l,t,w,h)
 
-class Father ():
+class Trinity ():
 	def __init__ (self, stage1, stage2, control):
 		self.stage1 = stage1
 		self.stage2 = stage2
@@ -34,12 +50,12 @@ class Father ():
 	
 			pygame.display.update()
 
-
+camera = camera.Camera (camera_config, level_width, level_height)
 control = controller.Holy_Spirit () 
-hero = character.Hero (0,0, control)
-stage1 = Level1(control, hero)
-stage2 = Level2(control, hero)
-game = Father (stage1, stage2, control)
+hero = character.Hero (45,45, control)
+stage1 = level1.Level(control, hero, lev1, camera)
+stage2 = level2.Level(control, hero, lev2)
+game = Trinity (stage1, stage2, control)
 game.main_loop ()
 
 

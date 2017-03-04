@@ -5,6 +5,8 @@ from pygame import Surface
 import pyganim
 import screens
 import fonts
+import functions
+import text
 
 #import pygame
 #Classes
@@ -26,8 +28,8 @@ class Monster(sprite.Sprite):
 		self.name = "monster"
 
 	def interaction (self):
-		screens.information_screen.blit(fonts.font1.render ((self.a), True, (250,250,250)),(0,0))
-
+		#screens.information_screen.blit(fonts.font1.render ((self.a), True, (250,250,250)),(0,0))
+		functions.render_text (tex.text1)
 
 class Platform(sprite.Sprite):
 	def __init__(self, x, y):

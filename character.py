@@ -54,9 +54,9 @@ class Hero(pygame.sprite.Sprite):
 					self.rect.x -= 1
 					self.rect.x += 45
 					array.remove (self.etwas)
-				#if self.etwas.name == "monster":
-					#self.rect.x -= 1
-					#self.etwas.interaction ()
+				if self.etwas.name == "monster":
+					self.rect.x -= 1
+					self.etwas.interaction ()
 			except:
 				self.rect.x += 45
 				self.rect.x -= 1
@@ -113,14 +113,14 @@ class Hero(pygame.sprite.Sprite):
 				self.rect.y += 45
 				self.rect.y -= 1
 
-		if self.rect.x > 810:
-			self.rect.x = 0
-		if self.rect.y > 450:
-			self.rect.y = 0
-		if self.rect.x <0:
-			self.rect.x = 810
-		if self.rect.y <0:
-			self.rect.y = 450	
+		#if self.rect.x > 810:
+		#	self.rect.x = 0
+		#if self.rect.y > 450:
+		#	self.rect.y = 0
+		#if self.rect.x <0:
+		#	self.rect.x = 810
+		#if self.rect.y <0:
+		#	self.rect.y = 450	
 
 		pass
 		#if self.collision == True:
