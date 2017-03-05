@@ -8,6 +8,8 @@ import fonts
 import functions
 import text
 
+
+
 #import pygame
 #Classes
 
@@ -15,7 +17,7 @@ import text
 		#adventure_screen.blit(background, (0, 0))
 		#svin_anim.blit (adventure_screen, (200,300))
 class Monster(sprite.Sprite):
-	def __init__(self, x, y, text):
+	def __init__(self, x, y, textus):
 		sprite.Sprite.__init__(self)
 		#self.image=image.load(filename)
 		#self.image.set_colorkey ((255,255,255))
@@ -26,11 +28,21 @@ class Monster(sprite.Sprite):
 		self.rect.x = x
 		self.rect.y = y
 		self.name = "monster"
-		self.text = text
+		self.textus = text
+		self.n = 0
+		self.s = 1
+		self.tree = text.zombi1
+
+	#def conversation (self):
+		#hero.conversation (text.zombi1)
 
 	def interaction (self):
 		#screens.information_screen.blit(fonts.font1.render ((self.a), True, (250,250,250)),(0,0))
-		functions.render_text (self.text)
+		#self.conversation ()
+		pass
+
+
+
 
 class Platform(sprite.Sprite):
 	def __init__(self, x, y):

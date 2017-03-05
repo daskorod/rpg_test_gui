@@ -1,5 +1,6 @@
 import pygame
 import pyganim
+import functions
 
 svin_anim_list = [('images/svin_motion.png',0.5),('images/svin_motion2.png',0.3),('images/svin_motion3.png',0.2)]
 svin_anim = pyganim.PygAnimation(svin_anim_list)
@@ -26,6 +27,29 @@ class Hero(pygame.sprite.Sprite):
 		self.item = []
 		self.collide_control = False
 		#self.etwas = nothing
+		self.n = 0
+		self.s = 1
+
+	def conversation (self, tree):
+
+		try:
+			functions.render_text (tree[self.n])
+		except:
+			self.n = 0
+			self.s = 1
+
+		if self.control.k_1 == True:
+			self.control.k_1 = False
+			self.s = self.s*10
+			self.n = (self.n+(1*self.s))
+		if self.control.k_2 == True:
+			self.control.k_2 = False
+			self.s = self.s*10
+			self.n = (self.n+(2*self.s))
+		if self.control.k_3 == True:
+			self.control.k_3 = False
+			self.s = self.s*10
+			self.n = (self.n+(3*self.s))
 
 	def collide (self, array):
 
@@ -43,7 +67,7 @@ class Hero(pygame.sprite.Sprite):
 
 	def update (self, array):
 		if self.collide_control == True:
-			self.etwas.interaction()
+			self.conversation(self.etwas.tree)
 
 
 		#RIGHT

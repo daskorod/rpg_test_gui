@@ -34,6 +34,8 @@ def create_level (level):
 	x = 0
 	y = 0
 	return  platforms, sprite_group
+n = 0
+s = 1
 
 
 
