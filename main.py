@@ -25,7 +25,7 @@ def camera_config (camera, target_rect):
 
 		return pygame.Rect (l,t,w,h)
 
-class Trinity ():
+class main ():
 	def __init__ (self, stage1, stage2, control):
 		self.stage1 = stage1
 		self.stage2 = stage2
@@ -52,10 +52,11 @@ class Trinity ():
 
 camera = camera.Camera (camera_config, level_width, level_height)
 control = controller.Holy_Spirit () 
-hero = character.Hero (45,45, control)
+view = classes.View_text (control)
+hero = character.Hero (45,45, control, view)
 stage1 = level1.Level(control, hero, lev1, camera)
 stage2 = level2.Level(control, hero, lev2)
-game = Trinity (stage1, stage2, control)
+game = main (stage1, stage2, control)
 game.main_loop ()
 
 

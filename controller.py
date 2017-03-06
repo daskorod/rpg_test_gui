@@ -15,6 +15,7 @@ class Holy_Spirit ():
 		self.k_1 = False
 		self.k_2 = False
 		self.k_3 = False
+		self.k_n = False
 		
 	def control (self):
 			for e in pygame.event.get ():
@@ -69,6 +70,8 @@ class Holy_Spirit ():
 
 					if e.key == pygame.K_3:
 						self.k_3 = True
+					if e.key == pygame.K_n:
+						self.k_n = True
 
 				if e.type == pygame.KEYUP:
 					if e.key == pygame.K_1:
@@ -79,3 +82,5 @@ class Holy_Spirit ():
 
 					if e.key == pygame.K_3:
 						self.k_3 = False
+					if e.key == pygame.K_n:
+						self.k_n = False
